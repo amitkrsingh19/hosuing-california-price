@@ -1,6 +1,6 @@
 import sys
-from src.logger import logging
 from typing import Tuple
+from src.logger import logger
 def error_message_detail(error: Exception, error_detail:Tuple=sys.exc_info()):
     """
     Constructs a detailed error message from an exception object.
@@ -15,7 +15,7 @@ class CustomException(Exception):
     def __init__(self,error_message:Exception,error_detail:Tuple=sys.exc_info()):
         #calling base class constructor 
         super().__init__(error_message)
-
+        logger.error(f"Exception: {error_message}")
         self.error_message=error_message_detail(error_message,error_detail=error_detail)
 
     def __str__(self):
